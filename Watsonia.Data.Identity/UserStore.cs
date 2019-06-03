@@ -63,16 +63,16 @@ namespace Watsonia.Data.Identity
 		/// The <see cref="T:System.Threading.Tasks.Task" /> that represents the asynchronous operation, containing the <see cref="T:Microsoft.AspNetCore.Identity.IdentityResult" /> of the creation operation.
 		/// </returns>
 		/// <exception cref="ArgumentNullException">user</exception>
-		public Task<IdentityResult> CreateAsync(TUser user, CancellationToken cancellationToken)
+		public async Task<IdentityResult> CreateAsync(TUser user, CancellationToken cancellationToken)
 		{
 			if (user == null)
 			{
 				throw new ArgumentNullException("user");
 			}
 
-			_db.Save(user);
+			await _db.SaveAsync(user);
 
-			return Task.FromResult(IdentityResult.Success);
+			return IdentityResult.Success;
 		}
 
 		/// <summary>
@@ -84,7 +84,7 @@ namespace Watsonia.Data.Identity
 		/// The <see cref="T:System.Threading.Tasks.Task" /> that represents the asynchronous operation, containing the <see cref="T:Microsoft.AspNetCore.Identity.IdentityResult" /> of the update operation.
 		/// </returns>
 		/// <exception cref="ArgumentNullException">user</exception>
-		public Task<IdentityResult> DeleteAsync(TUser user, CancellationToken cancellationToken)
+		public async Task<IdentityResult> DeleteAsync(TUser user, CancellationToken cancellationToken)
 		{
 			if (user == null)
 			{
@@ -95,12 +95,12 @@ namespace Watsonia.Data.Identity
 			//var dbuser = _db.Query<TUser>().FirstOrDefault(u => u.UserName == user.UserName);
 			//if (dbuser != null)
 			//{
-			//	_db.Delete(dbuser);
+			//	_db.DeleteAsync(dbuser);
 			//}
 
-			_db.Delete(user);
+			await _db.DeleteAsync(user);
 
-			return Task.FromResult(IdentityResult.Success);
+			return IdentityResult.Success;
 		}
 
 		/// <summary>
@@ -111,11 +111,9 @@ namespace Watsonia.Data.Identity
 		/// <returns>
 		/// The <see cref="T:System.Threading.Tasks.Task" /> that represents the asynchronous operation, containing the user matching the specified <paramref name="userId" /> if it exists.
 		/// </returns>
-		public Task<TUser> FindByIdAsync(string userId, CancellationToken cancellationToken)
+		public async Task<TUser> FindByIdAsync(string userId, CancellationToken cancellationToken)
 		{
-			var user = _db.Load<TUser>(userId);
-
-			return Task.FromResult(user);
+			return await _db.LoadAsync<TUser>(userId);
 		}
 
 		/// <summary>
@@ -240,16 +238,16 @@ namespace Watsonia.Data.Identity
 		/// The <see cref="T:System.Threading.Tasks.Task" /> that represents the asynchronous operation, containing the <see cref="T:Microsoft.AspNetCore.Identity.IdentityResult" /> of the update operation.
 		/// </returns>
 		/// <exception cref="ArgumentNullException">user</exception>
-		public Task<IdentityResult> UpdateAsync(TUser user, CancellationToken cancellationToken)
+		public async Task<IdentityResult> UpdateAsync(TUser user, CancellationToken cancellationToken)
 		{
 			if (user == null)
 			{
 				throw new ArgumentNullException("user");
 			}
 
-			_db.Save(user);
+			await _db.SaveAsync(user);
 
-			return Task.FromResult(IdentityResult.Success);
+			return IdentityResult.Success;
 		}
 
 		#endregion IUserStore
@@ -385,7 +383,7 @@ namespace Watsonia.Data.Identity
 		/// The <see cref="T:System.Threading.Tasks.Task" /> that represents the asynchronous operation.
 		/// </returns>
 		/// <exception cref="ArgumentNullException">user</exception>
-		public Task AddLoginAsync(TUser user, UserLoginInfo login, CancellationToken cancellationToken)
+		public async Task AddLoginAsync(TUser user, UserLoginInfo login, CancellationToken cancellationToken)
 		{
 			if (user == null)
 			{
@@ -402,12 +400,10 @@ namespace Watsonia.Data.Identity
 				newLogin.User = user;
 				newLogin.LoginProvider = login.LoginProvider;
 				newLogin.ProviderKey = login.ProviderKey;
-				_db.Save(newLogin);
+				await _db.SaveAsync(newLogin);
 
 				user.Logins.Add(newLogin);
 			}
-
-			return Task.FromResult(true);
 		}
 
 		/// <summary>
@@ -477,7 +473,7 @@ namespace Watsonia.Data.Identity
 		/// The <see cref="T:System.Threading.Tasks.Task" /> that represents the asynchronous operation.
 		/// </returns>
 		/// <exception cref="ArgumentNullException">user</exception>
-		public Task RemoveLoginAsync(TUser user, string loginProvider, string providerKey, CancellationToken cancellationToken)
+		public async Task RemoveLoginAsync(TUser user, string loginProvider, string providerKey, CancellationToken cancellationToken)
 		{
 			if (user == null)
 			{
@@ -489,12 +485,10 @@ namespace Watsonia.Data.Identity
 				if (user.Logins[i].LoginProvider == loginProvider &&
 					user.Logins[i].ProviderKey == providerKey)
 				{
-					_db.Delete(user.Logins[i]);
+					await _db.DeleteAsync(user.Logins[i]);
 					user.Logins.RemoveAt(i);
 				}
 			}
-
-			return Task.FromResult(0);
 		}
 
 		#endregion IUserLoginStore
@@ -511,7 +505,7 @@ namespace Watsonia.Data.Identity
 		/// The task object representing the asynchronous operation.
 		/// </returns>
 		/// <exception cref="ArgumentNullException">user</exception>
-		public Task AddClaimsAsync(TUser user, IEnumerable<Claim> claims, CancellationToken cancellationToken)
+		public async Task AddClaimsAsync(TUser user, IEnumerable<Claim> claims, CancellationToken cancellationToken)
 		{
 			if (user == null)
 			{
@@ -531,13 +525,11 @@ namespace Watsonia.Data.Identity
 					newClaim.User = user;
 					newClaim.Type = claim.Type;
 					newClaim.Value = claim.Value;
-					_db.Save(newClaim);
+					await _db.SaveAsync(newClaim);
 
 					user.Claims.Add(new Claim(claim.Type, claim.Value));
 				}
 			}
-
-			return Task.FromResult(0);
 		}
 
 		/// <summary>

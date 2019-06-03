@@ -40,16 +40,16 @@ namespace Watsonia.Data.Identity
 		/// A <see cref="T:System.Threading.Tasks.Task`1" /> that represents the <see cref="T:Microsoft.AspNetCore.Identity.IdentityResult" /> of the asynchronous query.
 		/// </returns>
 		/// <exception cref="ArgumentNullException">role</exception>
-		public Task<IdentityResult> CreateAsync(TRole role, CancellationToken cancellationToken)
+		public async Task<IdentityResult> CreateAsync(TRole role, CancellationToken cancellationToken)
 		{
 			if (role == null)
 			{
 				throw new ArgumentNullException("role");
 			}
 
-			_db.Save(role);
+			await _db.SaveAsync(role);
 
-			return Task.FromResult(IdentityResult.Success);
+			return IdentityResult.Success;
 		}
 
 		/// <summary>
@@ -61,16 +61,16 @@ namespace Watsonia.Data.Identity
 		/// A <see cref="T:System.Threading.Tasks.Task`1" /> that represents the <see cref="T:Microsoft.AspNetCore.Identity.IdentityResult" /> of the asynchronous query.
 		/// </returns>
 		/// <exception cref="ArgumentNullException">role</exception>
-		public Task<IdentityResult> UpdateAsync(TRole role, CancellationToken cancellationToken)
+		public async Task<IdentityResult> UpdateAsync(TRole role, CancellationToken cancellationToken)
 		{
 			if (role == null)
 			{
 				throw new ArgumentNullException("role");
 			}
 
-			_db.Save(role);
+			await _db.SaveAsync(role);
 
-			return Task.FromResult(IdentityResult.Success);
+			return IdentityResult.Success;
 		}
 
 		/// <summary>
@@ -82,16 +82,16 @@ namespace Watsonia.Data.Identity
 		/// A <see cref="T:System.Threading.Tasks.Task`1" /> that represents the <see cref="T:Microsoft.AspNetCore.Identity.IdentityResult" /> of the asynchronous query.
 		/// </returns>
 		/// <exception cref="ArgumentNullException">role</exception>
-		public Task<IdentityResult> DeleteAsync(TRole role, CancellationToken cancellationToken)
+		public async Task<IdentityResult> DeleteAsync(TRole role, CancellationToken cancellationToken)
 		{
 			if (role == null)
 			{
 				throw new ArgumentNullException("role");
 			}
 
-			_db.Delete(role);
+			await _db.DeleteAsync(role);
 
-			return Task.FromResult(IdentityResult.Success);
+			return IdentityResult.Success;
 		}
 
 		/// <summary>
@@ -104,9 +104,7 @@ namespace Watsonia.Data.Identity
 		/// </returns>
 		public Task<TRole> FindByIdAsync(string roleId, CancellationToken cancellationToken)
 		{
-			var role = _db.Load<TRole>(roleId);
-
-			return Task.FromResult(role);
+			return _db.LoadAsync<TRole>(roleId);
 		}
 
 		/// <summary>
@@ -172,13 +170,10 @@ namespace Watsonia.Data.Identity
 		/// <returns>
 		/// The <see cref="T:System.Threading.Tasks.Task" /> that represents the asynchronous operation.
 		/// </returns>
-		public Task SetRoleNameAsync(TRole role, string roleName, CancellationToken cancellationToken)
+		public async Task SetRoleNameAsync(TRole role, string roleName, CancellationToken cancellationToken)
 		{
 			role.RoleName = roleName;
-
-			_db.Save(role);
-
-			return Task.FromResult(true);
+			await _db.SaveAsync(role);
 		}
 
 		/// <summary>
@@ -190,13 +185,10 @@ namespace Watsonia.Data.Identity
 		/// <returns>
 		/// The <see cref="T:System.Threading.Tasks.Task" /> that represents the asynchronous operation.
 		/// </returns>
-		public Task SetNormalizedRoleNameAsync(TRole role, string normalizedName, CancellationToken cancellationToken)
+		public async Task SetNormalizedRoleNameAsync(TRole role, string normalizedName, CancellationToken cancellationToken)
 		{
 			role.RoleName = normalizedName;
-
-			_db.Save(role);
-
-			return Task.FromResult(true);
+			await _db.SaveAsync(role);
 		}
 	}
 }
