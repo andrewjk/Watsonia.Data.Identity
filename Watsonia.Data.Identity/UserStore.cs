@@ -67,7 +67,7 @@ namespace Watsonia.Data.Identity
 		{
 			if (user == null)
 			{
-				throw new ArgumentNullException("user");
+				throw new ArgumentNullException(nameof(user));
 			}
 
 			await _db.SaveAsync(user);
@@ -88,7 +88,7 @@ namespace Watsonia.Data.Identity
 		{
 			if (user == null)
 			{
-				throw new ArgumentNullException("user");
+				throw new ArgumentNullException(nameof(user));
 			}
 
 			// HACK: Was this necessary?
@@ -148,7 +148,7 @@ namespace Watsonia.Data.Identity
 		{
 			if (user == null)
 			{
-				throw new ArgumentNullException("user");
+				throw new ArgumentNullException(nameof(user));
 			}
 
 			return Task.FromResult(user.UserName.ToUpperInvariant());
@@ -167,7 +167,7 @@ namespace Watsonia.Data.Identity
 		{
 			if (user == null)
 			{
-				throw new ArgumentNullException("user");
+				throw new ArgumentNullException(nameof(user));
 			}
 
 			return Task.FromResult(user.Id.ToString());
@@ -186,7 +186,7 @@ namespace Watsonia.Data.Identity
 		{
 			if (user == null)
 			{
-				throw new ArgumentNullException("user");
+				throw new ArgumentNullException(nameof(user));
 			}
 
 			return Task.FromResult(user.UserName);
@@ -221,7 +221,7 @@ namespace Watsonia.Data.Identity
 		{
 			if (user == null)
 			{
-				throw new ArgumentNullException("user");
+				throw new ArgumentNullException(nameof(user));
 			}
 
 			user.UserName = userName;
@@ -242,7 +242,7 @@ namespace Watsonia.Data.Identity
 		{
 			if (user == null)
 			{
-				throw new ArgumentNullException("user");
+				throw new ArgumentNullException(nameof(user));
 			}
 
 			await _db.SaveAsync(user);
@@ -266,7 +266,7 @@ namespace Watsonia.Data.Identity
 		{
 			if (user == null)
 			{
-				throw new ArgumentNullException("user");
+				throw new ArgumentNullException(nameof(user));
 			}
 
 			if (!user.Roles.Any(r => r.RoleName.Equals(role, StringComparison.InvariantCultureIgnoreCase)))
@@ -293,7 +293,7 @@ namespace Watsonia.Data.Identity
 		{
 			if (user == null)
 			{
-				throw new ArgumentNullException("user");
+				throw new ArgumentNullException(nameof(user));
 			}
 
 			IList<string> result;
@@ -337,7 +337,7 @@ namespace Watsonia.Data.Identity
 		{
 			if (user == null)
 			{
-				throw new ArgumentNullException("user");
+				throw new ArgumentNullException(nameof(user));
 			}
 
 			return Task.FromResult(user.Roles.Any(r => r.RoleName.Equals(role, StringComparison.InvariantCultureIgnoreCase)));
@@ -355,7 +355,7 @@ namespace Watsonia.Data.Identity
 		{
 			if (user == null)
 			{
-				throw new ArgumentNullException("user");
+				throw new ArgumentNullException(nameof(user));
 			}
 
 			for (var i = user.Roles.Count - 1; i >= 0; i--)
@@ -387,7 +387,7 @@ namespace Watsonia.Data.Identity
 		{
 			if (user == null)
 			{
-				throw new ArgumentNullException("user");
+				throw new ArgumentNullException(nameof(user));
 			}
 
 			var loginExists = user.Logins.Any(l =>
@@ -443,7 +443,7 @@ namespace Watsonia.Data.Identity
 		{
 			if (user == null)
 			{
-				throw new ArgumentNullException("user");
+				throw new ArgumentNullException(nameof(user));
 			}
 
 			IList<UserLoginInfo> result;
@@ -477,7 +477,7 @@ namespace Watsonia.Data.Identity
 		{
 			if (user == null)
 			{
-				throw new ArgumentNullException("user");
+				throw new ArgumentNullException(nameof(user));
 			}
 
 			for (var i = user.Logins.Count - 1; i >= 0; i--)
@@ -509,7 +509,7 @@ namespace Watsonia.Data.Identity
 		{
 			if (user == null)
 			{
-				throw new ArgumentNullException("user");
+				throw new ArgumentNullException(nameof(user));
 			}
 
 
@@ -545,7 +545,7 @@ namespace Watsonia.Data.Identity
 		{
 			if (user == null)
 			{
-				throw new ArgumentNullException("user");
+				throw new ArgumentNullException(nameof(user));
 			}
 
 			IList<Claim> result;
@@ -599,7 +599,7 @@ namespace Watsonia.Data.Identity
 		{
 			if (user == null)
 			{
-				throw new ArgumentNullException("user");
+				throw new ArgumentNullException(nameof(user));
 			}
 
 			for (var i = user.Claims.Count - 1; i >= 0; i--)
@@ -646,7 +646,7 @@ namespace Watsonia.Data.Identity
 		{
 			if (user == null)
 			{
-				throw new ArgumentNullException("user");
+				throw new ArgumentNullException(nameof(user));
 			}
 
 			return Task.FromResult(user.PasswordHash);
@@ -666,7 +666,7 @@ namespace Watsonia.Data.Identity
 		{
 			if (user == null)
 			{
-				throw new ArgumentNullException("user");
+				throw new ArgumentNullException(nameof(user));
 			}
 
 			return Task.FromResult<bool>(user.PasswordHash != null);
@@ -686,7 +686,7 @@ namespace Watsonia.Data.Identity
 		{
 			if (user == null)
 			{
-				throw new ArgumentNullException("user");
+				throw new ArgumentNullException(nameof(user));
 			}
 
 			user.PasswordHash = passwordHash;
@@ -711,7 +711,7 @@ namespace Watsonia.Data.Identity
 		{
 			if (user == null)
 			{
-				throw new ArgumentNullException("user");
+				throw new ArgumentNullException(nameof(user));
 			}
 
 			return Task.FromResult(user.SecurityStamp);
@@ -731,7 +731,7 @@ namespace Watsonia.Data.Identity
 		{
 			if (user == null)
 			{
-				throw new ArgumentNullException("user");
+				throw new ArgumentNullException(nameof(user));
 			}
 
 			user.SecurityStamp = stamp;
@@ -754,7 +754,7 @@ namespace Watsonia.Data.Identity
 		{
 			if (email == null)
 			{
-				throw new ArgumentNullException("email");
+				throw new ArgumentNullException(nameof(email));
 			}
 
 			var user = _db.Query<TUser>().Where(u => u.Email == email).FirstOrDefault();
@@ -775,7 +775,7 @@ namespace Watsonia.Data.Identity
 		{
 			if (user == null)
 			{
-				throw new ArgumentNullException("user");
+				throw new ArgumentNullException(nameof(user));
 			}
 
 			return Task.FromResult(user.Email);
@@ -796,7 +796,7 @@ namespace Watsonia.Data.Identity
 		{
 			if (user == null)
 			{
-				throw new ArgumentNullException("user");
+				throw new ArgumentNullException(nameof(user));
 			}
 
 			return Task.FromResult(user.EmailConfirmed);
@@ -830,7 +830,7 @@ namespace Watsonia.Data.Identity
 		{
 			if (user == null)
 			{
-				throw new ArgumentNullException("user");
+				throw new ArgumentNullException(nameof(user));
 			}
 
 			user.Email = email;
@@ -851,7 +851,7 @@ namespace Watsonia.Data.Identity
 		{
 			if (user == null)
 			{
-				throw new ArgumentNullException("user");
+				throw new ArgumentNullException(nameof(user));
 			}
 
 			user.EmailConfirmed = confirmed;
@@ -891,7 +891,7 @@ namespace Watsonia.Data.Identity
 		{
 			if (user == null)
 			{
-				throw new ArgumentNullException("user");
+				throw new ArgumentNullException(nameof(user));
 			}
 
 			return Task.FromResult(user.AccessFailedCount);
@@ -910,7 +910,7 @@ namespace Watsonia.Data.Identity
 		{
 			if (user == null)
 			{
-				throw new ArgumentNullException("user");
+				throw new ArgumentNullException(nameof(user));
 			}
 
 			return Task.FromResult(user.LockoutEnabled);
@@ -931,7 +931,7 @@ namespace Watsonia.Data.Identity
 		{
 			if (user == null)
 			{
-				throw new ArgumentNullException("user");
+				throw new ArgumentNullException(nameof(user));
 			}
 
 			return Task.FromResult(user.LockoutEnd);
@@ -950,7 +950,7 @@ namespace Watsonia.Data.Identity
 		{
 			if (user == null)
 			{
-				throw new ArgumentNullException("user");
+				throw new ArgumentNullException(nameof(user));
 			}
 
 			user.AccessFailedCount += 1;
@@ -974,7 +974,7 @@ namespace Watsonia.Data.Identity
 		{
 			if (user == null)
 			{
-				throw new ArgumentNullException("user");
+				throw new ArgumentNullException(nameof(user));
 			}
 
 			user.AccessFailedCount = 0;
@@ -996,7 +996,7 @@ namespace Watsonia.Data.Identity
 		{
 			if (user == null)
 			{
-				throw new ArgumentNullException("user");
+				throw new ArgumentNullException(nameof(user));
 			}
 
 			user.LockoutEnabled = enabled;
@@ -1018,7 +1018,7 @@ namespace Watsonia.Data.Identity
 		{
 			if (user == null)
 			{
-				throw new ArgumentNullException("user");
+				throw new ArgumentNullException(nameof(user));
 			}
 
 			user.LockoutEnd = lockoutEnd;
@@ -1045,7 +1045,7 @@ namespace Watsonia.Data.Identity
 		{
 			if (user == null)
 			{
-				throw new ArgumentNullException("user");
+				throw new ArgumentNullException(nameof(user));
 			}
 
 			return Task.FromResult(user.TwoFactorEnabled);
@@ -1066,7 +1066,7 @@ namespace Watsonia.Data.Identity
 		{
 			if (user == null)
 			{
-				throw new ArgumentNullException("user");
+				throw new ArgumentNullException(nameof(user));
 			}
 
 			user.TwoFactorEnabled = enabled;
@@ -1091,7 +1091,7 @@ namespace Watsonia.Data.Identity
 		{
 			if (user == null)
 			{
-				throw new ArgumentNullException("user");
+				throw new ArgumentNullException(nameof(user));
 			}
 
 			return Task.FromResult(user.PhoneNumber);
@@ -1111,7 +1111,7 @@ namespace Watsonia.Data.Identity
 		{
 			if (user == null)
 			{
-				throw new ArgumentNullException("user");
+				throw new ArgumentNullException(nameof(user));
 			}
 
 			return Task.FromResult(user.PhoneNumberConfirmed);
@@ -1131,7 +1131,7 @@ namespace Watsonia.Data.Identity
 		{
 			if (user == null)
 			{
-				throw new ArgumentNullException("user");
+				throw new ArgumentNullException(nameof(user));
 			}
 
 			user.PhoneNumber = phoneNumber;
@@ -1153,7 +1153,7 @@ namespace Watsonia.Data.Identity
 		{
 			if (user == null)
 			{
-				throw new ArgumentNullException("user");
+				throw new ArgumentNullException(nameof(user));
 			}
 
 			user.PhoneNumberConfirmed = confirmed;

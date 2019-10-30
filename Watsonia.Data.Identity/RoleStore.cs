@@ -44,7 +44,7 @@ namespace Watsonia.Data.Identity
 		{
 			if (role == null)
 			{
-				throw new ArgumentNullException("role");
+				throw new ArgumentNullException(nameof(role));
 			}
 
 			await _db.SaveAsync(role);
@@ -65,7 +65,7 @@ namespace Watsonia.Data.Identity
 		{
 			if (role == null)
 			{
-				throw new ArgumentNullException("role");
+				throw new ArgumentNullException(nameof(role));
 			}
 
 			await _db.SaveAsync(role);
@@ -86,7 +86,7 @@ namespace Watsonia.Data.Identity
 		{
 			if (role == null)
 			{
-				throw new ArgumentNullException("role");
+				throw new ArgumentNullException(nameof(role));
 			}
 
 			await _db.DeleteAsync(role);
