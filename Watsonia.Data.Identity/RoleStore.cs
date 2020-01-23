@@ -104,7 +104,9 @@ namespace Watsonia.Data.Identity
 		/// </returns>
 		public Task<TRole> FindByIdAsync(string roleId, CancellationToken cancellationToken)
 		{
-			return _db.LoadAsync<TRole>(roleId);
+			// Convert the roleId from string to the correct key type, so the cache gets checked correctly
+			var id = (TKey)Convert.ChangeType(roleId, typeof(TKey));
+			return _db.LoadAsync<TRole>(id);
 		}
 
 		/// <summary>

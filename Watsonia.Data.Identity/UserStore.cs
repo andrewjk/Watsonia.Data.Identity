@@ -113,7 +113,9 @@ namespace Watsonia.Data.Identity
 		/// </returns>
 		public async Task<TUser> FindByIdAsync(string userId, CancellationToken cancellationToken)
 		{
-			return await _db.LoadAsync<TUser>(userId);
+			// Convert the userId from string to the correct key type, so the cache gets checked correctly
+			var id = (TKey)Convert.ChangeType(userId, typeof(TKey));
+			return await _db.LoadAsync<TUser>(id);
 		}
 
 		/// <summary>
