@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Watsonia.Data.Identity
+namespace Watsonia.Data.Identity.Models
 {
 	/// <summary>
 	/// Represents a login and its associated provider for a user.

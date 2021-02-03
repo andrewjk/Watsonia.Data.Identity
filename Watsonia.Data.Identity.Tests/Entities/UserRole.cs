@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Watsonia.Data.Identity.Models;
 
 namespace Watsonia.Data.Identity.Tests.Entities
 {

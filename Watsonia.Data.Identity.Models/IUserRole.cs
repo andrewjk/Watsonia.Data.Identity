@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Watsonia.Data.Identity
+namespace Watsonia.Data.Identity.Models
 {
 	/// <summary>
 	/// Represents the link between a user and a role.

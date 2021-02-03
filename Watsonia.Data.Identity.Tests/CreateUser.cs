@@ -17,8 +17,8 @@ namespace Watsonia.Data.Identity.Tests
 			var connectionString = @"Data Source=Data\Entities.sqlite";
 			var db = new EntitiesDb(provider, connectionString, "Watsonia.Data.Identity.Tests.Entities");
 
-			await db.EnsureDatabaseDeletedAsync();
-			await db.EnsureDatabaseCreatedAsync();
+			db.EnsureDatabaseDeleted();
+			db.EnsureDatabaseCreated();
 
 			var store = new UserStore<User, UserRole, NoLogins, NoClaims, long>(db);
 

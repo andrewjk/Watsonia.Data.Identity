@@ -8,10 +8,11 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Watsonia.Data;
+using Watsonia.Data.Identity.Models;
 
 namespace Watsonia.Data.Identity
 {
-	public class UserStore<TUser, TUserRole, TUserLogin, TUserClaim, TKey> :
+	public sealed class UserStore<TUser, TUserRole, TUserLogin, TUserClaim, TKey> :
 		IUserStore<TUser>,
 		IUserRoleStore<TUser>,
 		IUserLoginStore<TUser>,
@@ -529,7 +530,7 @@ namespace Watsonia.Data.Identity
 					newClaim.Value = claim.Value;
 					await _db.SaveAsync(newClaim);
 
-					user.Claims.Add(new Claim(claim.Type, claim.Value));
+					user.Claims.Add(newClaim);
 				}
 			}
 		}

@@ -6,10 +6,11 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Watsonia.Data;
+using Watsonia.Data.Identity.Models;
 
 namespace Watsonia.Data.Identity
 {
-	public class RoleStore<TRole, TKey> :
+	public sealed class RoleStore<TRole, TKey> :
 		IRoleStore<TRole>
 		where TRole : class, IUserRole<TKey>
 	{

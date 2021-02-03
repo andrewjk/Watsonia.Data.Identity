@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Text;
+using Watsonia.Data.Identity.Models;
 
 namespace Watsonia.Data.Identity.Tests.Entities
 {
@@ -38,7 +39,7 @@ namespace Watsonia.Data.Identity.Tests.Entities
 				throw new NotImplementedException();
 			}
 		}
-		IList<Claim> IUser<long>.Claims { get; set; }
+		IList<IUserClaim<long>> IUser<long>.Claims { get; set; }
 		IList<IUserLogin<long>> IUser<long>.Logins { get; set; }
 	}
 }

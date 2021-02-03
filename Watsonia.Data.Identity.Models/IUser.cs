@@ -1,12 +1,11 @@
-﻿using Microsoft.AspNetCore.Identity;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Watsonia.Data.Identity
+namespace Watsonia.Data.Identity.Models
 {
 	/// <summary>
 	/// Represents a user in the identity system.
@@ -22,7 +21,6 @@ namespace Watsonia.Data.Identity
 		/// <summary>
 		/// Gets or sets the user name for this user.
 		/// </summary>
-		[ProtectedPersonalData]
 		string UserName { get; set; }
 
 		/// <summary>
@@ -38,7 +36,6 @@ namespace Watsonia.Data.Identity
 		/// <summary>
 		/// Gets or sets a flag indicating if a user has confirmed their email address.
 		/// </summary>
-		[PersonalData]
 		bool EmailConfirmed { get; set; }
 
 		/// <summary>
@@ -49,13 +46,11 @@ namespace Watsonia.Data.Identity
 		/// <summary>
 		/// Gets or sets a telephone number for the user.
 		/// </summary>
-		[ProtectedPersonalData]
 		string PhoneNumber { get; set; }
 
 		/// <summary>
 		/// Gets or sets a flag indicating if a user has confirmed their telephone address.
 		/// </summary>
-		[PersonalData]
 		bool PhoneNumberConfirmed { get; set; }
 
 		/// <summary>
@@ -82,7 +77,6 @@ namespace Watsonia.Data.Identity
 		/// <summary>
 		/// Gets or sets a flag indicating if two factor authentication is enabled for this
 		/// </summary>
-		[PersonalData]
 		bool TwoFactorEnabled { get; set; }
 
 		/// <summary>
@@ -103,7 +97,7 @@ namespace Watsonia.Data.Identity
 		/// <summary>
 		/// Gets or sets the user's claims.
 		/// </summary>
-		IList<Claim> Claims { get; set; }
+		IList<IUserClaim<TKey>> Claims { get; set; }
 
 		/// <summary>
 		/// Gets or sets the user's external logins.
